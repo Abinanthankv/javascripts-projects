@@ -7,14 +7,37 @@
     <title>Weather</title>
     <link href="style.css" rel="stylesheet" />
     <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
 
 <body>
     <main>
+        <section>
+            <div class="searchbar">
+                <input type="text" id="search" class="search">
+                <button type="button" class="searchbtn" onclick="searchcity()"><i
+                        class="material-icons md-60">travel_explore</i></button>
 
-       <div>Hello</div>
+            </div>
+            <div class="weather">
+                <div class="current_data">
+                    <div class="location">
+                        <h2 class="city">weather in TN </h2>
+                        <h2 class="country"> In</h2>
+                    </div>
+                    <h2 id="currentdate">Date</h2>
+                    <h1 id="current_temp" class="temp">51 &#176 C </h1>
+                    <img src="" alt="" class="icon1">
+                    <div class="description">Cloudy</div>
+                    <div class="humidity"></div>
+                    <br>
+                    <canvas id="temperature" style="width:100%;max-width:700px;background-color: grey;">
+
+                    </canvas>
+                </div>
 
 
+        </section>
     </main>
 </body>
 
