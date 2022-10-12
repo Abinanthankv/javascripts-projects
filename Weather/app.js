@@ -6,11 +6,13 @@ let lon;
 let date = [];
 let cityname;
 let description;
+let hourly_temp=[];
 let daily_description = [];
 let daily_icon = [];
 let temp_min = [];
 let temp_max = [];
 let current_temp;
+let current_time;
 let country;
 let icon;
 let icons = [];
@@ -19,6 +21,8 @@ let condition = [];
 let intensity = [];
 let humidity;
 let current_date;
+var today=new Date();
+ current_time=today.getHours();
 /*let city = "Harur";*/
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 /*fetchcity(city);*/
@@ -61,7 +65,12 @@ function displayWeather(data) {
     current_temp = data.current.temp;
     humidity = data.current.humidity;
     let dailydata = data.daily;
+    let hourlydata=data.hourly;
     console.log(data);
+    for (let i = 0; i <= hourlydata.length - 1; i++) {
+        hourly_temp[i]=Math.ceil(hourlydata[i].temp);
+        current_time[i]=current_time+1;
+    }
 
    for (let i = 0; i <= dailydata.length - 1; i++) {
         daily_description[i] = dailydata[i].weather[0].description;
@@ -71,6 +80,7 @@ function displayWeather(data) {
         temp_min[i] = dailydata[i].temp.min;
 
     }
+    console.log(hourly_temp);
 
     current_date = date[0];
    
@@ -158,39 +168,8 @@ function displayWeather(data) {
 
 
 /*-----------------------------------------------------------------------------------*/
+window.addEventListener("DOMContentLoaded",function(){
+   
 
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx,{
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+    });
+
