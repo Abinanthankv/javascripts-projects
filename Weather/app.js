@@ -12,7 +12,7 @@ let daily_icon = [];
 let temp_min = [];
 let temp_max = [];
 let current_temp;
-let current_time;
+
 let country;
 let icon;
 let icons = [];
@@ -21,11 +21,28 @@ let condition = [];
 let intensity = [];
 let humidity;
 let current_date;
+/* To get day,date,time*/ 
+/*-----------------------------------------------------------------------*/ 
+var current_time;
 var today=new Date();
- current_time=today.getHours();
-/*let city = "Harur";*/
+var day=today.getDay();
+var currentdate=today.getDate();
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-/*fetchcity(city);*/
+var current_day=weekday[day];
+var hour=today.getHours();
+var minutes=today.getMinutes();
+if(minutes<10){
+    current_time=hour+":0"+minutes;  
+}
+else{
+    current_time=hour+":"+minutes;
+}
+
+console.log(minutes);
+/**--------------------------------------------------------------------------------------------- */
+let city = "Harur";
+
+fetchcity(city);
 
 function searchcity() {
 
@@ -57,21 +74,68 @@ function fetchWeather(lat, lon) {
         + "&units=metric&appid=" + apikey)
         .then((response) => response.json())
         .then((data) => displayWeather(data));
+        
 
 }
-function displayWeather(data) {
+function doesFileExist(urlToFile)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
 
+    if (xhr.status == "404") {
+        if(description.includes("clouds"))
+        {
+            document.querySelector(".icon1").src="icons/overcast clouds.svg";  
+        }
+        else if(description.includes("rain"))
+        {
+            document.querySelector(".icon1").src="icons/rain.svg";
+        }
+        else if(description.includes("snow"))
+        {
+            document.querySelector(".icon1").src="icons/snow.svg";
+        }
+        else if(description.includes("hail"))
+        {
+            document.querySelector(".icon1").src="icons/hail.svg";
+        }
+        else if(description.includes("haze"))
+        {
+            document.querySelector(".icon1").src="icons/haze.svg";
+        }
+        else if(description.includes("thunderstorms"))
+        {
+            document.querySelector(".icon1").src="icons/thunderstorms.svg";
+        }
+        else if(description.includes("fog"))
+        {
+            document.querySelector(".icon1").src="icons/fog.svg";
+        }
+        else if(description.includes("clear"))
+        {
+            document.querySelector(".icon1").src="icons/clear sky.svg";
+        }
+        
+    } else {
+        console.log(document.querySelector('.icon2'));
+        document.querySelector(".icon1").src="icons/"+description+".svg";
+        document.querySelector(".mini-icon").src="icons/"+description+".svg";
+        
+        
+
+    }
+}
+
+function displayWeather(data) {
     description = data.current.weather[0].description;
     current_temp = data.current.temp;
     humidity = data.current.humidity;
     let dailydata = data.daily;
     let hourlydata=data.hourly;
+    doesFileExist("icons/"+description+".svg")
     console.log(data);
-    for (let i = 0; i <= hourlydata.length - 1; i++) {
-        hourly_temp[i]=Math.ceil(hourlydata[i].temp);
-        current_time[i]=current_time+1;
-    }
-
+   
    for (let i = 0; i <= dailydata.length - 1; i++) {
         daily_description[i] = dailydata[i].weather[0].description;
         daily_icon[i] = dailydata[i].weather[0].icon
@@ -80,33 +144,33 @@ function displayWeather(data) {
         temp_min[i] = dailydata[i].temp.min;
 
     }
-    console.log(hourly_temp);
-
     current_date = date[0];
-   
-    console.log(current_date);
+    
+    console.log(current_day);
     /*----------------------------------------------------------------------------------------*/
     /*To display curent weather condition*/
     /*------------------------------------------------------------------------------------------*/
-    
-   
-
-
     /*document.querySelector(".icon1").src="https://openweathermap.org/img/wn/"+icon+".png";*/
-
     document.querySelector(".city").innerText = cityname + ",";
     document.querySelector(".country").innerText = country;
     document.querySelector(".description").innerText = description;
-   
     document.querySelector("#currentdate").innerText = current_date;
-    document.querySelector("#current_temp").innerText = Math.ceil(current_temp) + "\xB0 C";
+    document.querySelector("#current_temp").innerText = Math.ceil(current_temp) ;
     document.querySelector(".humidity").innerText = "Humidity:" + humidity + "%";
+    document.querySelector("#currentday").innerText = current_day+",";
+    document.querySelector("#currenttime").innerText = current_time;
+    document.querySelector("#currentdate").innerText = currentdate;
+    
+    
+   console.log(location);
+    
+    
     /*----------------------------------------------------------------------------------*/
 
     /*-------------------------------------------------------------------------------------*/
     /*To display daily forecase data for 7 days*/
     /*--------------------------------------------------------------------------------------*/
-   /* var days = document.querySelectorAll(".days");
+    var days = document.querySelectorAll(".days");
     var classes = document.querySelectorAll(".icon");
     var dates = document.querySelectorAll(".date");
     var desc = document.querySelectorAll(".desc");
@@ -156,13 +220,13 @@ function displayWeather(data) {
 
         setdate.innerText = weekday[date[i + 1].getDay()]
         setdesc.innerText = daily_description[i + 1];
-        settemp_min.innerText = Math.ceil(temp_min[i + 1]) + "\xB0C"
-        settemp_max.innerText = Math.ceil(temp_max[i + 1]) + "\xB0C"*/
+        settemp_min.innerText = Math.ceil(temp_min[i + 1]) + "\xB0C";
+        settemp_max.innerText = Math.ceil(temp_max[i + 1]) + "\xB0C";
 
-        /*imageicons.src="https://openweathermap.org/img/wn/"+daily_icon[i+1]+".png";
+        imageicons.src="https://openweathermap.org/img/wn/"+daily_icon[i+1]+".png";
     
 
-    }*/
+    }
 
 }
 
