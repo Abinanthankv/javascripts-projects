@@ -2,30 +2,37 @@
     box-sizing: border-box;
     top:0;
     margin:0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
     
 }
 body{
     font-size: 16px;
-    color: antiquewhite;
+    color: black;
 }
 main{
     margin: 20px;
     padding: 5px;
     border-radius: 25px;
-    background-color: #1b1b1b;
+   
+    
 }
 .todayweather{
     
     display: flex;
     flex-direction: column;
+    background-color: #1b1b1b;
+    width:300px;
+    border:2px solid red;
+    padding: 5px;
+    color: white;
 }
 
 #search{
     height:30px;
-    width:300px;
+    width:280px;
     text-align: center;
     border-radius: 25px;
-    
+    border: transparent;
     font-size: 22px;
     padding: 15px;
 }
@@ -41,8 +48,9 @@ main{
 }
 .searchbar i{
     position: absolute;
-    top:55px;
-    color: #1b1b1b;
+    top:65px;
+    
+    color: gray;
 }
 
 .searchbtn{
@@ -57,25 +65,32 @@ main{
     padding: 10px;
     height:86vh;
     width:300px;
-    
+    letter-spacing: 1px;
 }
-
 .temp {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
 }
 .temperature{
     display: flex;
+    gap: 4px;
 }
 .icon1{
     height:200px;
     width: auto;
+    
    
 }
 .mini-icon{
     height: 40px;
     width:auto;
 }
+
 .today_description{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+.today_humidity{
     display: flex;
     align-items: center;
 }
@@ -94,4 +109,26 @@ main{
 }
 .description{
     text-transform: capitalize;
+}
+.city,.country{
+    font-size: 1.5em;
+}
+
+.weeklyweather{
+    position: absolute;
+    top:25px;
+    padding: 10px;
+    left:330px;
+    width:100vw;
+    background-color: aqua;
+    height:200px;
+}
+.highlights{
+    position: absolute;
+    top:240px;
+    padding: 10px;
+    left:330px;
+    width:100vw;
+    background-color: violet;
+    height:420px;
 }

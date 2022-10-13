@@ -17,9 +17,9 @@
     <main>
         <section class="todayweather">
             <div class="searchbar">
-               <i class="material-symbols-rounded icon">
-                travel_explore
-        </i> <input type="text" id="search" class="search" onkeyup="searchcity()" placeholder="Search for Places..." />
+                <i class="material-symbols-rounded icon">travel_explore</i> 
+           <input type="text" id="search" class="search" onkeyup="searchcity()" placeholder="Search for Places..." />
+  
                 <!--<button type="button" class="searchbtn" onclick="searchcity()" >
                     </button>-->
 
@@ -46,7 +46,11 @@
                     </div>
                     
                     
-                    <div class="humidity"></div>
+                    <div class="today_humidity ">
+                    <img src="icons/humidity.svg" class="mini-icon" alt="humidity">
+                    <span class="humidity"></span>
+                        
+                    </div>
                    
                     <div class="location">
                         <span class="city">weather in TN </span>
@@ -65,7 +69,10 @@
 
 
         </section>
-        <section>
+        <section class="weeklyweather">
+
+        </section>
+        <section class="highlights">
 
         </section>
     </main>
