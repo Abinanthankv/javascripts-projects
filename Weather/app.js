@@ -77,6 +77,7 @@ function fetchWeather(lat, lon) {
         
 
 }
+/**To display icon based on description */
 function doesFileExist(urlToFile)
 {
     var xhr = new XMLHttpRequest();
@@ -126,6 +127,7 @@ function doesFileExist(urlToFile)
 
     }
 }
+/**----------------------------------------------------------------------------------------------------- */
 
 function displayWeather(data) {
     description = data.current.weather[0].description;
