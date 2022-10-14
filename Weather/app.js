@@ -81,7 +81,7 @@ function fetchWeather(lat, lon) {
 
 }
 /**To display icon based on description */
-function doesFileExist(urlToFile)
+// function doesFileExist(urlToFile)
 {
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
@@ -160,7 +160,7 @@ function doesFileExist(urlToFile)
     
     
 
-}
+}//
 /**----------------------------------------------------------------------------------------------------- */
 
 function displayWeather(data) {
@@ -293,6 +293,13 @@ function weeklydata(data){
             date:weekday[date[6]],
             min:temp_min[6],
             max:temp_max[6]
+        },
+        {
+            id:'day7',
+            icon:iconurl(daily_description[7]),
+            date:weekday[date[7]],
+            min:temp_min[7],
+            max:temp_max[7]
         }
         
         
@@ -303,9 +310,13 @@ function weeklydata(data){
     {
         return ` <div class="weekly">
         <div class="day">${item.date}</div> 
-        <img src=${item.icon}  alt="">
-        <div class="tempmin">${item.min}</div>
-        <div class="tempmax">${item.max}</div>
+        <img src=${item.icon} class="dailyicon" alt="">
+        <div>
+        <span class="tempmax">${Math.ceil(item.max)+"\xB0"}</span>
+        <span class="tempmin">${Math.ceil(item.min)+"\xB0"}</span>
+        
+        </div>
+        
         </div>`
         ;
     }
