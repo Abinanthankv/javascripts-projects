@@ -169,8 +169,9 @@ function displayWeather(data) {
     humidity = data.current.humidity;
     dailydata = data.daily;
     weeklydata(dailydata);
+   
   
-    doesFileExist("icons/"+description+".svg")
+    /*doesFileExist("icons/"+description+".svg")*/
     
    
 
@@ -189,6 +190,7 @@ function displayWeather(data) {
     document.querySelector("#currentday").innerText = current_day+",";
     document.querySelector("#currenttime").innerText = current_time;
     document.querySelector("#currentdate").innerText = currentdate;
+    document.querySelector(".icon1").src= iconurl(description);
     
     
    
