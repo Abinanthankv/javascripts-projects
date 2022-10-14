@@ -191,6 +191,8 @@ function displayWeather(data) {
     document.querySelector("#currenttime").innerText = current_time;
     document.querySelector("#currentdate").innerText = currentdate;
     document.querySelector(".icon1").src= iconurl(description);
+    document.querySelector(".mini-icon").src= iconurl(description);
+
     
     
    
@@ -284,7 +286,15 @@ function weeklydata(data){
             date:weekday[date[5]],
             min:temp_min[5],
             max:temp_max[5]
+        },
+        {
+            id:'day6',
+            icon:iconurl(daily_description[6]),
+            date:weekday[date[6]],
+            min:temp_min[6],
+            max:temp_max[6]
         }
+        
         
     
     ]
