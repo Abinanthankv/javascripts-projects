@@ -84,6 +84,14 @@ main{
     height: 40px;
     width:auto;
 }
+.humidity-icon{
+    height: 40px;
+    width:auto;
+}
+.dailyicon{
+    height: 40px;
+    width:auto;
+}
 
 .today_description{
     display: flex;
@@ -115,13 +123,21 @@ main{
 }
 
 .weeklyweather{
+    
     position: absolute;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap:150px;
     top:25px;
     padding: 10px;
     left:330px;
     width:100vw;
     background-color: aqua;
     height:200px;
+}
+.weekly{
+    
 }
 .highlights{
     position: absolute;
