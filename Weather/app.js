@@ -1,10 +1,5 @@
 
-function searchcity() {
-
-    city = document.getElementById("search").value;
-    fetchcity(city);
-}
-
+let currentuvindex;
 const apikey = "d702660defc3b728234840c245d99fa7";
 let lat;
 let lon;
@@ -17,7 +12,6 @@ let daily_icon = [];
 let temp_min = [];
 let temp_max = [];
 let current_temp;
-
 let country;
 let icon;
 let icons = [];
@@ -26,6 +20,8 @@ let condition = [];
 let intensity = [];
 let humidity;
 let current_date;
+let sunrise;
+let sunset;
 var dailydata;
 var displayweekly=[];
 /* To get day,date,time*/ 
@@ -33,6 +29,7 @@ var displayweekly=[];
 var current_time;
 var today=new Date();
 var day=today.getDay();
+
 var currentdate=today.getDate();
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var current_day=weekday[day];
@@ -46,11 +43,19 @@ else{
 }
 
 
+fetchcity("harur");
+
+
+
+
+
 /**--------------------------------------------------------------------------------------------- */
-let city = "Harur";
 
-fetchcity(city);
+function searchcity() {
 
+    city = document.getElementById("search").value;
+    fetchcity(city);
+}
 
 
 
@@ -80,87 +85,7 @@ function fetchWeather(lat, lon) {
         
 
 }
-/**To display icon based on description */
-// function doesFileExist(urlToFile)
-{
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
 
-    if (xhr.status == "404") {
-        if(description.includes("clouds"))
-        {
-            document.querySelector(".icon1").src="icons/overcastclouds.svg";  
-            document.querySelector(".mini-icon").src="icons/overcastclouds.svg";
-            
-        }
-        else if(description.includes("rain"))
-        {
-            document.querySelector(".icon1").src="icons/rain.svg";
-            document.querySelector(".mini-icon").src="icons/rain.svg";
-            
-        }
-        else if(description.includes("snow"))
-        {
-            document.querySelector(".icon1").src="icons/snow.svg";
-            document.querySelector(".mini-icon").src="icons/snow.svg";
-            
-        }
-        else if(description.includes("hail"))
-        {
-            document.querySelector(".icon1").src="icons/hail.svg";
-            document.querySelector(".mini-icon").src="icons/hail.svg";
-            
-        }
-        else if(description.includes("haze"))
-        {
-            document.querySelector(".icon1").src="icons/haze.svg";
-            document.querySelector(".mini-icon").src="icons/haze.svg";
-            
-        }
-        else if(description.includes("thunderstorms"))
-        {
-            document.querySelector(".icon1").src="icons/thunderstorms.svg";
-            document.querySelector(".mini-icon").src="icons/thunderstorms.svg";
-            
-        }
-        else if(description.includes("fog"))
-        {
-            document.querySelector(".icon1").src="icons/fog.svg";
-            document.querySelector(".mini-icon").src="icons/fog.svg";
-            
-        }
-        else if(description.includes("clear"))
-        {
-            document.querySelector(".icon1").src="icons/clearsky.svg";
-            document.querySelector(".mini-icon").src="icons/clearsky.svg";
-            
-        }
-        else if(description.includes("mist"))
-        {
-            document.querySelector(".icon1").src="icons/mist.svg";
-            document.querySelector(".mini-icon").src="icons/mist.svg";
-            
-        }
-        
-        
-        
-    }
-     else {
-        
-        document.querySelector(".icon1").src="icons/"+description+".svg";
-        document.querySelector(".mini-icon").src="icons/"+description+".svg";
-        
-        
-        
-        
-        
-
-    }
-    
-    
-
-}//
 /**----------------------------------------------------------------------------------------------------- */
 
 function displayWeather(data) {
@@ -168,10 +93,42 @@ function displayWeather(data) {
     current_temp = data.current.temp;
     humidity = data.current.humidity;
     dailydata = data.daily;
-    weeklydata(dailydata);
+    
+    var sunrise=new Date(data.current.sunrise*1000);
+    
+    
+    var sunrisehour=sunrise.getHours();
+    var riseAmOrPm = sunrisehour >= 12 ? 'Pm' : 'Am';
+    sunrisehour=(sunrisehour%12) || 12;
+    sunrisehour=sunrisehour<10? '0'+sunrisehour: sunrisehour;
    
+    var sunriseminute=sunrise.getMinutes();
+    sunriseminute=sunriseminute<10? '0'+sunriseminute: sunriseminute;
+    var sunrisetime=sunrisehour +":"+sunriseminute +" "+ riseAmOrPm;
+    var sunset=new Date(data.current.sunset*1000);
+    var sunsethour=sunset.getHours();
+    sunsethour=(sunsethour%12) || 12;
+    sunsethour=sunsethour<10? '0'+sunsethour: sunsethour;
+    var sunsetminute=sunset.getMinutes();
+    sunsetminute=sunsetminute<10? '0'+sunsetminute: sunsetminute;
+    var sunsettime=sunsethour +":"+sunsetminute +" "+"Pm";
+
+    
+    
+   
+    
+   currentuvindex=data.current.uvi;
+    weeklydata(dailydata);
+    console.log(data)
+    console.log(sunsettime,sunrisetime)
+    var bar=document.querySelector(".barOverflow");
+   
+    console.log(bar)
+    
+    console.log(hour)
+    
+    
   
-    /*doesFileExist("icons/"+description+".svg")*/
     
    
 
@@ -179,7 +136,7 @@ function displayWeather(data) {
     
    
     /*----------------------------------------------------------------------------------------*/
-    /*To display curent weather condition*/
+    /*To display current weather condition*/
     /*------------------------------------------------------------------------------------------*/
     /*document.querySelector(".icon1").src="https://openweathermap.org/img/wn/"+icon+".png";*/
     document.querySelector(".city").innerText = cityname + ",";
@@ -192,18 +149,11 @@ function displayWeather(data) {
     document.querySelector("#currentdate").innerText = currentdate;
     document.querySelector(".icon1").src= iconurl(description);
     document.querySelector(".mini-icon").src= iconurl(description);
+    document.querySelector(".sunrise").innerHTML=sunrisetime;
+    document.querySelector(".sunset").innerHTML=sunsettime;
 
-    
-    
-   
-    
-    
     /*----------------------------------------------------------------------------------*/
-
-    
-
-      
-
+return currentuvindex;
 }
 /*-------------------------------------------------------------------------------------*/
     /*To display daily forecase data for 7 days*/
@@ -305,7 +255,7 @@ function weeklydata(data){
         
     
     ]
-    console.log(days)
+    
     let daily=days.map(function (item)
     {
         return ` <div class="weekly">
@@ -329,6 +279,16 @@ function weeklydata(data){
     
   
 }
+
+   
+           
+    
+
+    
+
+
+
+
 
 
    

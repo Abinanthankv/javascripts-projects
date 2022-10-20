@@ -10,7 +10,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+    
+    
   </head>
 
   <body>
@@ -22,12 +23,13 @@
             type="text"
             id="search"
             class="search"
-            onkeyup="searchcity()"
+            
             placeholder="Search for Places..."
           />
 
-          <!--<button type="button" class="searchbtn" onclick="searchcity()" >
-                    </button>-->
+          <button type="button" class="searchbtn" onclick="searchcity()" >
+
+                    </button>
         </div>
 
         <div class="current_data">
@@ -63,7 +65,30 @@
         
       </section>
       
-      <section class="highlights"></section>
+      <section class="highlights">
+        <div>
+          Today's Highlights
+        </div>
+        <div class="card">
+          <div class="card-title">Sunrise & Sunset</div>
+        <div class="suntime">
+          
+          <div>
+            <img src="icons/sunrise.svg" class="sunriseset">
+          <div class="sunrise"></div>
+          </div>
+          <div>
+            <img src="icons/sunset.svg" class="sunriseset">
+            <div class="sunset"></div>
+          </div>
+
+        
+        </div>
+        </div>
+        
+        
+      </section>
     </main>
+  
   </body>
 </html>

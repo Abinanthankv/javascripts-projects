@@ -29,7 +29,7 @@ main{
 
 #search{
     height:30px;
-    width:280px;
+    width:260px;
     text-align: center;
     border-radius: 25px;
     border: transparent;
@@ -54,7 +54,11 @@ main{
 }
 
 .searchbtn{
-    border: none;
+   background-color: red;
+   top:65px;
+   height:26px;
+   width:30px;
+    position: absolute;
 }
 .current_data{
     display: flex;
@@ -164,6 +168,39 @@ main{
     padding: 10px;
     left:330px;
     width:75%;
-    background-color: violet;
+    background: #1b1b1b;
+    color: bisque;
+    
+    
     height:420px;
+}
+.uv-index{
+    width:250px !important;
+     height:250px !important;
+     
+   
+}
+.suntime{
+    display: flex;
+    padding: 15px;
+    flex-wrap: nowrap;
+    gap:20px;
+}
+.sunriseset{
+    height: 40px;
+    width:auto;
+}
+.card{
+    border:2px solid transparent;
+    margin: 5px;
+    background-color: rgba(12,30,45,0.7);
+    width:160px;
+    height:150px;
+    align-items: center;
+    backdrop-filter: blur(14px);
+    border-radius: 16px;;
+
+}
+.card-title{
+    padding: 5px;
 }
